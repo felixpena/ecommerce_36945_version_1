@@ -27,14 +27,14 @@ class Create_product(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('detail_product', kwargs={'pk':self.object.pk})
 
-class Delete_product(DeleteView):
+class Delete_product(LoginRequiredMixin, DeleteView):
     model = Products
     template_name = 'delete_product.html'
 
     def get_success_url(self):
         return reverse('list_products')
 
-class Update_product(UpdateView):
+class Update_product(LoginRequiredMixin, UpdateView):
     model = Products
     template_name = 'update_product.html'
     fields = '__all__'
