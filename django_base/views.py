@@ -1,4 +1,5 @@
 from datetime import datetime
+from ssl import HAS_TLSv1_1
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -9,6 +10,10 @@ from django.contrib.auth.decorators import login_required
 
 
 from django_base.forms import User_registration_form
+
+
+
+
 
 def login_view(request):
 
@@ -21,7 +26,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                context = {'message':f'Bienvenido {username}!! :D'}
+                context = {'message':f'Bienvenido {username}. Para Ver su perfil debe hacer link en tu username en el panel superior'}
                 return render(request, 'index.html', context = context)
             else:
                 context = {'errors':'No hay ningun usuario con esas credenciales!!!'}
@@ -49,7 +54,7 @@ def register_view(request):
             password = form.cleaned_data['password1']
             user = authenticate(username = username, password = password)
             login(request, user)
-            context = {'message':f'Usuario creado correctamente, bienvenido {username}'}
+            context = {'message':f'Usuario creado correctamente, bienvenido {username}.Para Ver perfil debe hacer link en tu username en el panel superior'}
             return render(request, 'index.html', context = context)
         else:
             errors = form.errors
@@ -63,24 +68,30 @@ def register_view(request):
 
 
 
+
 def logout_view(request):
     logout(request)
-    return redirect('index')
+    #return redirect('index')
+    context = {'message':'Sesión cerrada, Gracias por el tiempo que ha dedicado al sitio web hoy.'}
+    return render(request, 'auth/close_session.html', context = context)
 
 def index(request):
     return render(request, 'index.html')
 
-
+"""
 def contact(request):
     if request.user.is_authenticated and request.user.is_superuser:
         print(request.user.username)
-        return render(request, 'contact.html')
+        return render(request, 'login.html')
     else:
-        return redirect('login')
+        return redirect('login.html')
+"""
+def contact(request):
+    print(f"el user logiado es: {request.user.username}")
+    return render(request, 'contact.html')
 
-
-
-
+def user_profile(request):
+    return render(request, 'auth/user_profile.html')
 
 def saludo(request, nombre):
     return HttpResponse(f'Buenas tardes {nombre} :D')

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+userprofile
+{% endblock %}
+
+{% block contenido %}
+<h1>Aca va el contenido de user profile</h1>
+
+<!--Muestra Perfil de Usuario con todos los Argumentos tanto del app user como del django auth-->
+
+<h3>foto perfil: <img src="{{request.user.user_profile.image.url}}" style="height: 10rem;"></h3>
+<h3>Usuario:  {{request.user.user_profile.user}}</h3>
+<h3>Fecha de Registro:  {{request.user.date_joined}}</h3>
+<h3>Nombre:  {{request.user.first_name}}</h3>
+<h3>Apellido:  {{request.user.last_name}}</h3>
+<h3>es_superusuario:  {{request.user.is_superuser}}</h3>
+<h3>id :  {{request.user.id}}</h3>
+<h3>está activo :  {{request.user.is_active}}</h3>
+<h3>email:  {{request.user.email}}</h3>
+<h3>DNI:  {{request.user.user_profile.dni}}</h3>
+<h3>telefono:  {{request.user.user_profile.phone}}</h3>
+<h3>direccion:  {{request.user.user_profile.address}}</h3>
+<h3>Una fecha y hora del último inicio de sesión del usuario.:  {{request.user.last_login}}</h3>
+
+
+
+<!-- este es el motodo list view pero no logre filtrar por un perfil de usuario,  por el contratio me muestra todos los usuarios y sus argumentos-->
+<!--
+    {% for user in object_list %}
+        {{User_profile}}
+    {% endfor %}
+<br><br><br>{{request.user.user_profile.address}}
+<br>{{request.user.user_profile.address}}
+<h3>{{message}}</h3>
+<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+    {% for user in object_list %}
+    <div class="card" style="width: 18rem;">
+        {% if user.image %}
+        <img src="{{user.image.url}}" class="card-img-top" >
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{user.id}}</h5>
+            <h5 class="card-title">{{user.user}}</h5>
+            <h5 class="card-title">{{user.first_name}}</h5>
+            <h5 class="card-title">{{user.last_name}}</h5>
+            <h5 class="card-title">{{user.phone}}</h5>
+            <h5 class="card-title">{{user.email}}</h5>
+            <h5 class="card-text">{{user.address}}</h5>
+            <h5 class="card-text">{{user.dni}}</h5>
+            <h5 class="card-title">{{user.is_superuser}}</h5>
+            <h5 class="card-title">{{user.is_active}}</h5>
+            <h5 class="card-text">{{user.last_login}}</h5>
+            <h5 class="card-text">{{user.date_joined}}</h5>
+            
+        </div>
+    </div>
+    {% endfor %}
+</div>
+-->
+
+
+
+{% endblock %}
+
+

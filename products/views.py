@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from products.models import Products
+from products.models import Categoria, Products
 from products.forms import Product_form
 
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
@@ -13,7 +13,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 class List_products(ListView):
     model = Products
     template_name= 'products.html'
-    queryset = Products.objects.filter(is_active = True)
+    queryset = Products.objects.filter(is_active = True,)
 
 class Detail_product(DetailView):
     model = Products
@@ -114,3 +114,28 @@ def search_products(request):
     else:
         context = {'errors':'No se encontro el producto'}
     return render(request, 'search_products.html', context = context)
+
+"""
+# funcion listar categoria
+def dropdown_categoria(request):
+    categoria = Categoria.objects.all()
+    context = {'categoria':categoria}
+    
+    return render(request, 'base.html', context=context)
+"""
+"""
+class List_products_categoria(ListView):
+    model = Products
+    template_name= 'categorias/filter.html'
+    queryset = Products.objects.filter()
+
+
+def List_products_categoria(request, slug):
+    categoria = Categoria.objects.get(slug=slug)
+    listado = categoria.products.all()
+    context ={
+        'categoria': categoria,
+        'productos': listado
+    }
+    return render(request, 'categoria/filter2.html', context)
+"""

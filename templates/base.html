@@ -7,73 +7,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         {% block titulo %}
-        {% endblock %}
+        {% endblock titulo%}
     </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar " style="background: lightblue;">
-        <a class="navbar-brand" href="/">Inicio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+    <nav class="navbar navbar-expand-lg navbar " style="background: rgba(255, 136, 0, 0.702);">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/contact/">Contacto </a>
+                <!-- Customize logo inicio-->
+                <li class="nav-item"><a class="nav-link" href="/">{% include "base_logo.html" %} </a></li>
+                <!-- Customize logo fin-->
+                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact/">Nosotros </a></li>
+                <li class="nav-item"><a class="nav-link" href="/products/">Productos</a></li>
+                <!-- dropdown inicio-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        {% for x in categoria %}
+                        <li><a class="dropdown-item" href="#">{{x.name}}</a></li>
+                        {% endfor %}
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/products/">Productos</a>
-                </li>
-                <li class="nav-item" style="margin-right: 30rem">
-                    <a class="nav-link" href="/products/create-products/">Carga Productos</a>
-                </li>
+                <!-- dropdown fin-->
+                <li class="nav-item" style="margin-right:25rem"><a class="nav-link" href="/products/create-products/">Carga Productos</a></li>
                 {% if request.user.is_authenticated %}
-                <li class="nav-item" style="margin-right: 2rem">
-                    <h5>{{request.user.username}}</h5>
-                </li>
-
-                <li class="nav-item">
-                    <img src="{{request.user.user_profile.image.url}}" style="height: 2rem;">
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout/">Logout</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="/user_profile/">{{request.user.username}}</a></li>
+                <li class="nav-item"><img src="{{request.user.user_profile.image.url}}" style="height: 2rem;"></li>
+                <li class="nav-item"><a class="nav-link" href="/logout/">Logout</a></li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/login/">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register/">Register</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="/login/">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/register/">Register</a></li>
                 {% endif %}
             </ul>
-            <form class="form-inline my-2 my-lg-0" action = "/products/search-product/" method = "GET">
-                <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search" name = 'search'>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <!-- buscar productos en formulario Inicio-->
+            <form class="form-inline my-2 my-lg-0" action = "/products/search-product/" method = "GET" >
+                <input class="form-control mr-sm-2" type="text" placeholder="¿Qué estás buscando?" aria-label="Search" name = 'search'>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
-        </div>
-    
+            <!-- buscar productos en formulario Fin-->
+        </div>  
     </nav>
 
+
+    <!-- Customize text1 y text2 INICIo-->
+    <nav class="navbar navbar-expand-lg navbar " style="background: rgba(213, 186, 67, 0.702);">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% include "base_text1.html" %} 
+        </div>  
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar " style="background: rgba(231, 219, 166, 0.702);">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% include "base_text2.html" %}
+        </div>  
+    </nav>
+    <!-- Customize text1 y text2 FIN-->
     
-    
-    
+
+
     {% block contenido %}
-    {% endblock %}
+    {% endblock contenido %}
+
+
+
+    <!-- Customize footer Inicio -->
+    <br><br><br><br><br><br><br><br><br><br>
+    
+
+    <footer>
+        <nav class="navbar navbar-expand-lg navbar " style="background: rgba(240, 238, 233, 0.702);">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% include "base_footer.html" %}
+            </div>  
+        </nav>
+    </footer>
 
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-    crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
+<!----
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+-->
+
 
 </html>

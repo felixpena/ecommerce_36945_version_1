@@ -1,0 +1,10 @@
+
+
+{% block logo %}
+
+
+{% for x in custom %}
+    <img src="{{x.logo.url}}" alt="logo" width="100">
+{% endfor %}
+
+{% endblock logo %}

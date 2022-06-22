@@ -43,6 +43,7 @@ BASE_APPS = [
 MY_APPS = [
     'products',
     'users',
+    'customize',
 ]
 
 THIRD_APPS = [
@@ -74,6 +75,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # procesador de contextto para la funcion read_customize y dropdown_categoria desde context_processors.py sintaxis: "directorio".context_processors."funcion":
+                'customize.context_processors.read_customize', 
+                'customize.context_processors.dropdown_categoria',
             ],
         },
     },
