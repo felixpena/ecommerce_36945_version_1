@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', index, name = 'index'),
+    #path('', index, name = 'index'),
     path('admin/', admin.site.urls),
     path('saludo/<nombre>/', saludo, name = 'saludo'),
     path('fecha_actual/', fecha_actual, name = 'fecha_actual'),
@@ -35,3 +35,7 @@ urlpatterns += [
 ]
 
 """
+#  incorporar productos en el index.  Solo agregue este path que es el mismo path en urls de la app de producos y anule el patch principal de arriba el index
+from products.views import List_products
+urlpatterns +=[
+    path('', List_products.as_view(), name = 'list_products'),]
