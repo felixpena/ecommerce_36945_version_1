@@ -4,6 +4,9 @@
 - Franco Araya
 - Felix Peña
 
+## Video
+https://drive.google.com/drive/folders/1NmWvZQkO7ndLradGQHL1VTl4yKsGSyQr?usp=sharing
+
 ## Descarga
     Desde una consola o el bash de git usar el siguiente comando
         git clone https://github.com/felixpena/ecommerce_36945_version_1.git

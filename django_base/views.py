@@ -27,7 +27,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 context = {'message':f'Bienvenido {username}. Para Ver su perfil debe hacer link en tu username en el panel superior'}
-                return render(request, 'index.html', context = context)
+                return render(request, 'auth/user_profile.html', context = context)
             else:
                 context = {'errors':'No hay ningun usuario con esas credenciales!!!'}
                 form = AuthenticationForm()
@@ -55,7 +55,7 @@ def register_view(request):
             user = authenticate(username = username, password = password)
             login(request, user)
             context = {'message':f'Usuario creado correctamente, bienvenido {username}.Para Ver perfil debe hacer link en tu username en el panel superior'}
-            return render(request, 'index.html', context = context)
+            return render(request, 'auth/user_profile.html', context = context)
         else:
             errors = form.errors
             form = User_registration_form()
