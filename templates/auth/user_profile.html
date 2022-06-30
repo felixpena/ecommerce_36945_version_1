@@ -22,7 +22,10 @@ userprofile
 <h5>telefono:  {{request.user.user_profile.phone}}</h5>
 <h5>direccion:  {{request.user.user_profile.address}}</h5>
 <h5>Una fecha y hora del último inicio de sesión del usuario.:  {{request.user.last_login}}</h5>
-
+<!--
+<a href="/users/update-user-profile/{{object.id}}/" class="btn btn-primary">Editar</a>
+-->
+<a href="/users/update-user-profile/{{request.user.id}}/" class="btn btn-primary">Editar</a>
 
 
 <!-- este es el motodo list view pero no logre filtrar por un perfil de usuario,  por el contratio me muestra todos los usuarios y sus argumentos-->

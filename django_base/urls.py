@@ -14,7 +14,7 @@ urlpatterns = [
     path('probando-template/', probando_template, name = 'probando_template'),
     path('contact/', contact, name = 'contact'),
     path('products/', include('products.urls')),
-    
+    path('users/', include('users.urls')),
 
     path('login/', login_view, name = 'login'),
     path('logout/', logout_view, name = 'logout'),

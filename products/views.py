@@ -44,6 +44,15 @@ class Update_product(LoginRequiredMixin, UpdateView):
         return reverse('detail_product', kwargs = {'pk':self.object.pk})
 
 
+def search_products(request):
+    products = Products.objects.filter(name__icontains=request.GET['search'])
+    if products.exists():
+        context = {'products':products}
+    else:
+        context = {'errors':'No se encontro el producto'}
+    return render(request, 'search_products.html', context = context)
+
+
 
 # Create your views here.       
 # def list_products(request):
@@ -104,38 +113,3 @@ class Update_product(LoginRequiredMixin, UpdateView):
 #     except:
 #         context = {'error':'El Producto no existe'}
 #         return render(request, 'delete_product.html', context=context)
-
-
-
-def search_products(request):
-    products = Products.objects.filter(name__icontains=request.GET['search'])
-    if products.exists():
-        context = {'products':products}
-    else:
-        context = {'errors':'No se encontro el producto'}
-    return render(request, 'search_products.html', context = context)
-
-"""
-# funcion listar categoria
-def dropdown_categoria(request):
-    categoria = Categoria.objects.all()
-    context = {'categoria':categoria}
-    
-    return render(request, 'base.html', context=context)
-"""
-"""
-class List_products_categoria(ListView):
-    model = Products
-    template_name= 'categorias/filter.html'
-    queryset = Products.objects.filter()
-
-
-def List_products_categoria(request, slug):
-    categoria = Categoria.objects.get(slug=slug)
-    listado = categoria.products.all()
-    context ={
-        'categoria': categoria,
-        'productos': listado
-    }
-    return render(request, 'categoria/filter2.html', context)
-"""

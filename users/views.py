@@ -1,33 +1,42 @@
-"""
-import users
-from .models import User_profile
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import ListView
-# Create your views here.
-"""
+from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from users.models import User_profile
+from django.views.generic import UpdateView
 
 """
-# Lista basada en class /////   by felix  una vista del perfil de usuario.  # 
-# #########no funciono, entrega el perfil de todos los usuarios.  #####
+class List_products(ListView):
+    model = Products
+    template_name= 'products.html'
+    queryset = Products.objects.filter(is_active = True,)
 
-class User_profile(ListView):
+class Detail_product(DetailView):
+    model = Products
+    template_name= 'detail_product.html'
+
+class Create_product(LoginRequiredMixin, CreateView):
+    model = Products
+    template_name = 'create_products.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('detail_product', kwargs={'pk':self.object.pk})
+
+class Delete_product(LoginRequiredMixin, DeleteView):
+    model = Products
+    template_name = 'delete_product.html'
+
+    def get_success_url(self):
+        return reverse('list_products')
+"""
+class Update_user_profile(LoginRequiredMixin, UpdateView):
     model = User_profile
-    template_name = "user_profile.html"
-    queryset = User_profile.objects.all()
-    print(User_profile.dni)
-    #queryset = Products.objects.filter(is_active = True)
+    template_name = 'update_user_profile.html'
+    fields = ['phone', 'dni', 'address']
+#para todo:   '__all__'
 
-########################################################################
-"""
+    def get_success_url(self):
+        return reverse('user_profile')
 
-"""
-# Lista basada en funcición.  Método Rendering /////   by felix  una vista del perfil de usuario.
-
-def user_profile(request):
-    lista_persona = User_profile.objects.all()
-    context = {'lista_persona': lista_persona}
-    print(lista_persona)
-    return render(request, "user_profile.html", context)
-"""
-
-
+# https://docs.djangoproject.com/en/4.0/ref/urlresolvers/
