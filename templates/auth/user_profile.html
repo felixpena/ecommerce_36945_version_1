@@ -29,14 +29,16 @@ userprofile
 <h5>telefono:  {{request.user.user_profile.phone}}</h5>
 <h5>direccion:  {{request.user.user_profile.address}}</h5>
 
+<section style="background-color: rgb(236, 212, 212);">
 <!--
 <a href="/users/update-user-profile/{{object.id}}/" class="btn btn-primary">Editar</a>
 -->
-
-<a href="/users/update-user-profile/{{request.user.user_profile.id}}/" class="btn btn-primary">Editar</a>
 <h6 style="color:red;">La edición sera funcional despues que el administrador lo agregue como usuario. Espere 24 horas</h6>
+{% if request.user.user_profile.id %}
+<a href="/users/update-user-profile/{{request.user.user_profile.id}}/" class="btn btn-primary">Editar</a>
 
-
+{% endif %}
+</section>
 <!-- este es el motodo list view pero no logre filtrar por un perfil de usuario,  por el contratio me muestra todos los usuarios y sus argumentos-->
 <!--
     {% for user in object_list %}
