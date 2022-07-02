@@ -17,7 +17,8 @@ userprofile
 <h5>Nombre:  {{request.user.first_name}}</h5>
 <h5>Apellido:  {{request.user.last_name}}</h5>
 <h5>es_superusuario:  {{request.user.is_superuser}}</h5>
-<h5>id :  {{request.user.id}}</h5>
+<h5>user_id :  {{request.user.id}}</h5>
+<h5>id :  {{request.user.user_profile.id}}</h5>
 <h5>está activo :  {{request.user.is_active}}</h5>
 <h5>email:  {{request.user.email}}</h5>
 <h5>Una fecha y hora del último inicio de sesión del usuario.:  {{request.user.last_login}}</h5>
@@ -31,7 +32,9 @@ userprofile
 <!--
 <a href="/users/update-user-profile/{{object.id}}/" class="btn btn-primary">Editar</a>
 -->
-<a href="/users/update-user-profile/{{request.user.id}}/" class="btn btn-primary">Editar</a>
+
+<a href="/users/update-user-profile/{{request.user.user_profile.id}}/" class="btn btn-primary">Editar</a>
+<h6 style="color:red;">La edición sera funcional despues que el administrador lo agregue como usuario. Espere 24 horas</h6>
 
 
 <!-- este es el motodo list view pero no logre filtrar por un perfil de usuario,  por el contratio me muestra todos los usuarios y sus argumentos-->
