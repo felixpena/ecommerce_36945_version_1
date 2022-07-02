@@ -14,12 +14,12 @@
 
     <div class="card" style="width: 18rem;">
         {% if product.image %}
-        <img src="{{product.image.url}}" class="card-img-top" >
+        <img src="{{product.image.url}}" class="card-img-top"  >
         {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}}</p>
-            <p class="card-text">{{product.price}}</p>
+            <p class="card-text">${{product.price}}</p>
             <a href="/products/detail-product/{{product.id}}/" class="btn btn-primary">Ver mas!</a>
         </div>
     </div>

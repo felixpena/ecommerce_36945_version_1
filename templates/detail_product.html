@@ -8,11 +8,20 @@
 <h1 style="margin-left:30rem">Aca va el contenido de detalles de productos</h1>
 <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 22rem; border-radius: 10% ">
         <div class="card-body">
-            <h5 class="card-title">{{object.name}}</h5>
-            <p class="card-text">{{object.description}}</p>
-            <p class="card-text">{{object.price}}</p>
+            <h5 class="card-title">Name: {{object.name}}</h5>
+            <p class="card-title">id DataBase: {{object.id}}</p>
+            <p class="card-title">SKU: {{object.SKU}}</p>
+            <p class="card-text">Description: {{object.description}}</p>
+            <p class="card-text">Price $ {{object.price}}</p>
+            <p class="card-title">is_active: {{object.is_active}}</p>
+            <p class="card-text">Category name: {{object.category}}</p>
+            <p class="card-text">Category id: {{object.category.id}}</p>
+            <p class="card-text">Category description: {{object.category.description}}</p>
+            {% if object.image %}
+            <img src="{{object.image.url}}" alt="image product" width="250" >
+            {% endif %}
             <a href="/products/update-product/{{object.id}}/" class="btn btn-primary">Editar</a>
             <a href="/products/delete-product/{{object.id}}/" class="btn btn-danger">Eliminar</a>
         </div>
