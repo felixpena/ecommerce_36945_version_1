@@ -33,10 +33,13 @@ class Delete_product(LoginRequiredMixin, DeleteView):
 class Update_user_profile(LoginRequiredMixin, UpdateView):
     model = User_profile
     template_name = 'update_user_profile.html'
-    fields = ['phone', 'dni', 'address']
-#para todo:   '__all__'
+    fields =  ['nombre', 'apellido', 'phone', 'dni', 'address', 'mail', 'is_active', 'image',  ]
+    #exclude = ['phone',]
+#para todo:  '__all__'
 
     def get_success_url(self):
         return reverse('user_profile')
 
 # https://docs.djangoproject.com/en/4.0/ref/urlresolvers/
+
+# Solucion para subir imagen en updateview    https://www.youtube.com/watch?v=Xj0wiGQzCR4

@@ -25,9 +25,13 @@ userprofile
 
 
 <h5 style="color: red;">Campos editables:</h5>
+<h5>Nombre:  {{request.user.user_profile.nombre}}</h5>
+<h5>Apellido:  {{request.user.user_profile.apellido}}</h5>
+<h5>email:  {{request.user.user_profile.mail}}</h5>
 <h5>DNI:  {{request.user.user_profile.dni}}</h5>
 <h5>telefono:  {{request.user.user_profile.phone}}</h5>
 <h5>direccion:  {{request.user.user_profile.address}}</h5>
+<h5>activo?:  {{request.user.user_profile.is_active}}</h5>
 
 <section style="background-color: rgb(236, 212, 212);">
 <!--

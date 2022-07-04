@@ -7,6 +7,10 @@ class User_profile(models.Model):
     image = models.ImageField(upload_to='profile_image', default='') #asigna una foto al perfil de usuario un "avatar" clase 24
     address = models.CharField(max_length=30,  default='')
     dni = models.CharField(max_length=30,  default='',unique=True )
+    nombre = models.CharField(max_length=30, blank=True)
+    apellido = models.CharField(max_length=30, blank=True)
+    mail = models.EmailField(blank=True)
+    is_active = models.BooleanField()
     def __str__(self):
         return f'{self.user}  {self.user.id}  {self.user.first_name}'
     class Meta:
